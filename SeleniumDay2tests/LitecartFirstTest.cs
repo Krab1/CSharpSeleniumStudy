@@ -36,7 +36,6 @@ namespace SeleniumDay2tests
                 var loginbtn = driver.FindElement(By.Name("login"));
                 loginbtn.Click();
                 wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id=\"sidebar\"]/div[2]/a[5]/i")));
-                driver.FindElement(By.XPath("//*[@id=\"sidebar\"]/div[2]/a[5]/i")).Click();
             }
             catch
             {
