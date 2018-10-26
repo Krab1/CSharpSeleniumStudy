@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace SeleniumDay2tests
 {
@@ -24,7 +25,7 @@ namespace SeleniumDay2tests
             driver.Url = "http://google.com";
             driver.FindElement(By.Name("q")).SendKeys("webdriver");
             driver.FindElement(By.Name("btnG")).Click();
-            wait.Until(ExpectedConditions.TitleIs("webdriver - Поиск в Google"));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TitleIs("webdriver - Поиск в Google"));
         }
         [TearDown]
         public void stop()
