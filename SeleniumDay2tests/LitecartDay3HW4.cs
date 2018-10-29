@@ -1,29 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using SeleniumExtras.WaitHelpers;
 
 namespace SeleniumDay2tests
 {
     [TestFixture]
-    class LitecartFirstTest
+    class LitecartDay3HW4
     {
-        private IWebDriver driver;
         private OpenQA.Selenium.Support.UI.WebDriverWait wait;
+        private List<IWebDriver> drivers;
 
         [SetUp]
-        public void start()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            wait = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(10));
-        }
+        public void start() => drivers = new List<IWebDriver>() { new ChromeDriver(), new InternetExplorerDriver() };
+
         [Test]
-        public void Test()
+        public void Test() => drivers.ForEach(x => Testing(x));
+
+        private void Testing(IWebDriver driver)
         {
             try
             {
+                wait = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 driver.Url = "http://localhost:88/litecart/admin/login.php";
                 var username = driver.FindElement(By.Name("username"));
                 if (!string.IsNullOrWhiteSpace(username.Text))
@@ -36,18 +38,15 @@ namespace SeleniumDay2tests
                 var loginbtn = driver.FindElement(By.Name("login"));
                 loginbtn.Click();
                 wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id=\"sidebar\"]/div[2]/a[5]/i")));
+                driver.Quit();
+                driver.Dispose();
             }
             catch
             {
                 throw new Exception();
             }
-            
         }
         [TearDown]
-        public void Stop()
-        {
-            driver.Quit();
-            driver.Dispose();
-        }
+        public void Stop() => drivers.RemoveAll(x => x != null);
     }
 }
