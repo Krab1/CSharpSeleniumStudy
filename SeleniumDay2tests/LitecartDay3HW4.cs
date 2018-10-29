@@ -14,18 +14,26 @@ namespace SeleniumDay2tests
     {
         private OpenQA.Selenium.Support.UI.WebDriverWait wait;
         private List<IWebDriver> drivers;
+        FirefoxOptions options = new FirefoxOptions();
 
         [SetUp]
-        public void start() => drivers = new List<IWebDriver>() { new ChromeDriver(), new FirefoxDriver(), new InternetExplorerDriver() };
+        public void start()
+        {
+            options.UseLegacyImplementation = false;
+            drivers = new List<IWebDriver>() { new ChromeDriver(), new FirefoxDriver(options), new InternetExplorerDriver() };
+        }
 
         [Test]
-        public void Test() => drivers.ForEach(x => Testing(x));
+        public void Test() => drivers.ForEach(x =>
+        {
+            wait = new OpenQA.Selenium.Support.UI.WebDriverWait(x, TimeSpan.FromSeconds(10));
+            Testing(x);
+        });
 
         private void Testing(IWebDriver driver)
         {
             try
             {
-                wait = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 driver.Url = "http://localhost:88/litecart/admin/login.php";
                 var username = driver.FindElement(By.Name("username"));
                 if (!string.IsNullOrWhiteSpace(username.Text))
