@@ -16,7 +16,7 @@ namespace SeleniumDay2tests
         private List<IWebDriver> drivers;
 
         [SetUp]
-        public void start() => drivers = new List<IWebDriver>() { new ChromeDriver(), new InternetExplorerDriver() };
+        public void start() => drivers = new List<IWebDriver>() { new ChromeDriver(), new FirefoxDriver(), new InternetExplorerDriver() };
 
         [Test]
         public void Test() => drivers.ForEach(x => Testing(x));
