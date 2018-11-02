@@ -5,7 +5,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
-namespace SeleniumDay2tests
+namespace SeleniumTests
 {
     [TestFixture]
     public class SeleniumDay2Test

@@ -1,26 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using SeleniumExtras.WaitHelpers;
 
-namespace SeleniumDay2tests
+namespace SeleniumTests
 {
     [TestFixture]
-    class LitecartFirstTest
+    class Task4
     {
-        private IWebDriver driver;
         private OpenQA.Selenium.Support.UI.WebDriverWait wait;
+        private List<IWebDriver> drivers;
+        FirefoxOptions options = new FirefoxOptions();
 
         [SetUp]
         public void start()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            wait = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            options.UseLegacyImplementation = false;
+            drivers = new List<IWebDriver>() { new ChromeDriver(), new FirefoxDriver(options), new InternetExplorerDriver() };
         }
+
         [Test]
-        public void Test()
+        public void Test() => drivers.ForEach(x =>
+        {
+            wait = new OpenQA.Selenium.Support.UI.WebDriverWait(x, TimeSpan.FromSeconds(10));
+            Testing(x);
+        });
+
+        private void Testing(IWebDriver driver)
         {
             try
             {
@@ -36,18 +46,15 @@ namespace SeleniumDay2tests
                 var loginbtn = driver.FindElement(By.Name("login"));
                 loginbtn.Click();
                 wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id=\"sidebar\"]/div[2]/a[5]/i")));
+                driver.Quit();
+                driver.Dispose();
             }
             catch
             {
                 throw new Exception();
             }
-            
         }
         [TearDown]
-        public void Stop()
-        {
-            driver.Quit();
-            driver.Dispose();
-        }
+        public void Stop() => drivers.RemoveAll(x => x != null);
     }
 }

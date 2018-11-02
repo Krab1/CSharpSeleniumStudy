@@ -4,10 +4,10 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using SeleniumExtras.WaitHelpers;
 
-namespace SeleniumDay2tests
+namespace SeleniumTests
 {
     [TestFixture]
-    class LitecartDay3HW6
+    class Task6
     {
         private OpenQA.Selenium.Support.UI.WebDriverWait wait;
         IWebDriver driver;

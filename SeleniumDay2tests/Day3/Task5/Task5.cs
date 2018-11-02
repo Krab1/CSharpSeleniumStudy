@@ -7,10 +7,10 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using SeleniumExtras.WaitHelpers;
 
-namespace SeleniumDay2tests
+namespace SeleniumTests
 {
     [TestFixture]
-    class LitecartDay3HW4
+    class Task5
     {
         private OpenQA.Selenium.Support.UI.WebDriverWait wait;
         private List<IWebDriver> drivers;
@@ -19,7 +19,7 @@ namespace SeleniumDay2tests
         [SetUp]
         public void start()
         {
-            options.UseLegacyImplementation = false;
+            options.UseLegacyImplementation = true;
             drivers = new List<IWebDriver>() { new ChromeDriver(), new FirefoxDriver(options), new InternetExplorerDriver() };
         }
 

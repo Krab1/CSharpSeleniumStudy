@@ -58,15 +58,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LitecartDay3HW4.cs" />
-    <Compile Include="LitecartDay3HW6.cs" />
-    <Compile Include="LitecartFirstTest.cs" />
-    <Compile Include="SeleniumDay2Test.cs" />
+    <Compile Include="Day3\Task4\Task4.cs" />
+    <Compile Include="Day3\Task5\Task5.cs" />
+    <Compile Include="Day3\Task6\Task6.cs" />
+    <Compile Include="Day2\FirstTest.cs" />
+    <Compile Include="Day2\SeleniumDay2Test.cs" />
+    <Compile Include="Day4\Task7.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
