@@ -3,7 +3,6 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 
 namespace SeleniumTests
 {
@@ -14,21 +13,23 @@ namespace SeleniumTests
         private WebDriverWait wait;
 
         [SetUp]
-        public void start()
+        public void Start()
         {
             driver = new ChromeDriver();
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
         }
         [Test]
-        public void FirstTest()
+        public void Test()
         {
             driver.Url = "http://google.com";
             driver.FindElement(By.Name("q")).SendKeys("webdriver");
-            driver.FindElement(By.Name("btnG")).Click();
+            driver.FindElement(By.Name("btnK")).Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TitleIs("webdriver - Поиск в Google"));
         }
         [TearDown]
-        public void stop()
+        public void Stop()
         {
             driver.Quit();
             driver.Dispose();

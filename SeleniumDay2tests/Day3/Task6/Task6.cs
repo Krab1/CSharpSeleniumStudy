@@ -1,44 +1,23 @@
 ﻿using System;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using SeleniumExtras.WaitHelpers;
 
 namespace SeleniumTests
 {
     [TestFixture]
-    class Task6
+    class Task6 : Base
     {
-        private OpenQA.Selenium.Support.UI.WebDriverWait wait;
-        IWebDriver driver;
-
         [SetUp]
-        public void start()
-        {
-            FirefoxOptions options = new FirefoxOptions();
-            options.BrowserExecutableLocation = "c:\\Program Files (x86)\\Nightly\\firefox.exe";
-            driver = new FirefoxDriver(options);
-        }
-
+        public void Start() => StartFireFox(new FirefoxOptions
+            {
+                BrowserExecutableLocation = "c:\\Program Files (x86)\\Nightly\\firefox.exe"
+            });
         [Test]
-        private void Test()
+        public void Test()
         {
             try
             {
-                driver.Url = "http://localhost:88/litecart/admin/login.php";
-                var username = driver.FindElement(By.Name("username"));
-                if (!string.IsNullOrWhiteSpace(username.Text))
-                    username.Clear();
-                username.SendKeys("admin");
-                var password = driver.FindElement(By.Name("password"));
-                if (!string.IsNullOrWhiteSpace(password.Text))
-                    password.Clear();
-                password.SendKeys("admin");
-                var loginbtn = driver.FindElement(By.Name("login"));
-                loginbtn.Click();
-                wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@id=\"sidebar\"]/div[2]/a[5]/i")));
-                driver.Quit();
-                driver.Dispose();
+                Login();
             }
             catch
             {
@@ -46,10 +25,6 @@ namespace SeleniumTests
             }
         }
         [TearDown]
-        public void Stop()
-        {
-            driver.Close();
-            driver.Dispose();
-        }
+        public void Stop() => StopDriver();
     }
 }

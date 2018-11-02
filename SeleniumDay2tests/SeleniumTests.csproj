@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseLogics\Base.cs" />
     <Compile Include="Day3\Task4\Task4.cs" />
     <Compile Include="Day3\Task5\Task5.cs" />
     <Compile Include="Day3\Task6\Task6.cs" />
