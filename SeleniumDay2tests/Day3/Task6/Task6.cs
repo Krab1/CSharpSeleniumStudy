@@ -17,7 +17,7 @@ namespace SeleniumTests
         {
             try
             {
-                Login();
+                OpenAdmin();
             }
             catch
             {

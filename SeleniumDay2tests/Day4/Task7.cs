@@ -12,7 +12,7 @@ namespace SeleniumTests
         public void Start()
         {
             StartChrome();
-            Login();
+            OpenAdmin();
         }
         [Test]
         public void Test()

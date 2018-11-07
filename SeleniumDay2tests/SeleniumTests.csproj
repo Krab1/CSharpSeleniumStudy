@@ -64,6 +64,7 @@
     <Compile Include="Day3\Task6\Task6.cs" />
     <Compile Include="Day2\FirstTest.cs" />
     <Compile Include="Day2\SeleniumDay2Test.cs" />
+    <Compile Include="Day4\Task8.cs" />
     <Compile Include="Day4\Task7.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

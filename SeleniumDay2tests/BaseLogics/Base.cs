@@ -56,7 +56,19 @@ namespace SeleniumTests
             driver = new FirefoxDriver(FFOptions);
             config();
         }
-        public void Login()
+        public void OpenMainSite()
+        {
+            try
+            {
+                driver.Url = "http://localhost:88/litecart/";
+                Assert.IsTrue(driver.FindElements(By.XPath("//*[@id='header']")).Count > 0, "Не найден лого, сайт не загрузился");
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+        public void OpenAdmin()
         {
             try
             {
