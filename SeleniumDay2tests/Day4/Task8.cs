@@ -19,9 +19,13 @@ namespace SeleniumTests
         {
             try
             {
-                var DucksCount = driver.FindElements(By.XPath("//*[@class='image-wrapper']")).Count;
-                var StickersCount = driver.FindElements(By.XPath("//*[@class='image-wrapper']/div[contains(@class, 'sticker')]")).Count;
-                Assert.IsTrue(DucksCount == StickersCount, "Количество товаров не соответсвует количеству стикеров на них");
+                var Ducks = driver.FindElements(By.XPath("//*[@class='product column shadow hover-light']"));
+                foreach(var duck in Ducks)
+                {
+                    var stickers = duck.FindElements(By.XPath(".//div[contains(@class, 'sticker')]"));
+                    var name = duck.FindElement(By.XPath(".//div[@class='name']"));
+                    Assert.IsTrue(stickers.Count <= 1, $"Количество стикеров у элемента {name.Text} больше 1");
+                }
             }
             catch (Exception e)
             {
