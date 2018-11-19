@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -94,6 +95,29 @@ namespace SeleniumTests
         {
             wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
         }
+        public string GetRandomEmail(int length)
+        {
+            var name = GetRandomString(length);
+            var rand = new Random().Next(1, 4);
+            switch (rand)
+            {
+                case 1:
+                    return name + "@mail.ru";
+                case 2:
+                    return name + "@yandex.ru";
+                case 3:
+                    return name + "@yahoo.com";
+                default:
+                    return name + "@gmail.com";
+            }
+        }
+        public string GetRandomString(int length)
+        {
+            Random random = new Random();
+            const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
         public void StopDriver()
         {
             driver.Quit();
