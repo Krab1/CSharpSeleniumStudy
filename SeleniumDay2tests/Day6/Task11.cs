@@ -14,7 +14,7 @@ namespace SeleniumTests
             OpenMainSite();
         }
         [Test]
-        public void Test1()
+        public void Test()
         {
             driver.FindElement(By.XPath("//*[@id='box-account-login']//a")).Click();
             Assert.IsTrue(driver.Title.Contains("Create Account"));
