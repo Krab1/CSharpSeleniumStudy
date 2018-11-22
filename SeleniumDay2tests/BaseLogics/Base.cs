@@ -6,16 +6,14 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 
 namespace SeleniumTests
 {
     class Base
     {
         public IWebDriver driver;
-        private WebDriverWait wait;
+        public WebDriverWait wait;
         public List<IWebDriver> AllDrivers = new List<IWebDriver>() { };
         public void config()
         {
