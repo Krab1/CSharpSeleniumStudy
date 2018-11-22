@@ -43,26 +43,16 @@ namespace SeleniumTests
 
             driver.FindElement(By.XPath("//*/a[contains(@href, 'checkout') and @class='link']")).Click();
             wait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.CssSelector("[name=\"remove_cart_item\"]")));
-            try
+            var ListOfProducts = driver.FindElements(By.CssSelector("[style=\"text-align: center;\"]"));
+            while (ListOfProducts.Count > 0)
             {
-                var ListOfProducts = driver.FindElements(By.CssSelector("[style=\"text-align: center;\"]"));
-                while (ListOfProducts.Count > 0)
-                {
-                    var elements = driver.FindElements(By.XPath("//*[@id='box-checkout-cart']//li[@class='shortcut']"));
-                    if(elements.Count > 0)
-                    {
-                        elements[0].Click();
-                    }
-                    driver.FindElement(By.XPath("//*/button[@name='remove_cart_item']")).Click();
-                    wait.Until(ExpectedConditions.StalenessOf(ListOfProducts[0]));
-                    ListOfProducts = driver.FindElements(By.CssSelector("[style=\"text-align: center;\"]"));
-                }
+                var elements = driver.FindElements(By.XPath("//*[@id='box-checkout-cart']//li[@class='shortcut']"));
+                if (elements.Count > 0)
+                    elements[0].Click();
+                driver.FindElement(By.XPath("//*/button[@name='remove_cart_item']")).Click();
+                wait.Until(ExpectedConditions.StalenessOf(ListOfProducts[0]));
+                ListOfProducts = driver.FindElements(By.CssSelector("[style=\"text-align: center;\"]"));
             }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            
         }
         [TearDown]
         public void Stop()
