@@ -19,7 +19,7 @@ namespace SeleniumTests
         {
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
-            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(30);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
         }
         public void StartAll(bool firefoxUseLegacyImplementation = false)
@@ -91,7 +91,7 @@ namespace SeleniumTests
         }
         public void WaitUntilPageLoad()
         {
-            wait.Until(driver1 => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+            wait.Until(func => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
         }
         public string GetRandomEmail(int length)
         {

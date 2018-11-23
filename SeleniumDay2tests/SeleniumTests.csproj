@@ -71,6 +71,7 @@
     <Compile Include="Day5\Task9pt1.cs" />
     <Compile Include="Day6\Task12.cs" />
     <Compile Include="Day6\Task11.cs" />
+    <Compile Include="Day8\Task14.cs" />
     <Compile Include="Day7\Task13.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
