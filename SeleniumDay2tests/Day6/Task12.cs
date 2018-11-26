@@ -56,11 +56,5 @@ namespace SeleniumTests
             }
             Assert.Contains(productName, listProductsName, "В списке продуктов найден добавленный продукт");
         }
-
-        [TearDown]
-        public void Stop()
-        {
-            StopDriver();
-        }
     }
 }

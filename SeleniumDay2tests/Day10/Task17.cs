@@ -39,10 +39,5 @@ namespace SeleniumTests
                 driver.Navigate().Back();
             }
         }
-        [TearDown]
-        public void Stop()
-        {
-            StopDriver();
-        }
     }
 }

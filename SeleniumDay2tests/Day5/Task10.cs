@@ -127,10 +127,5 @@ namespace SeleniumTests
                 return true;
             return false;
         }
-        [TearDown]
-        public void Stop()
-        {
-            StopDriver();
-        }
     }
 }

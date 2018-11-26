@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
@@ -53,11 +51,6 @@ namespace SeleniumTests
                 wait.Until(ExpectedConditions.StalenessOf(ListOfProducts[0]));
                 ListOfProducts = driver.FindElements(By.CssSelector("[style=\"text-align: center;\"]"));
             }
-        }
-        [TearDown]
-        public void Stop()
-        {
-            StopDriver();
         }
     }
 }

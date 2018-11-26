@@ -32,10 +32,5 @@ namespace SeleniumTests
                 throw new Exception(e.Message);
             }
         }
-        [TearDown]
-        public void Stop()
-        {
-            StopDriver();
-        }
     }
 }

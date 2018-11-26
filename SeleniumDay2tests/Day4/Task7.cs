@@ -49,10 +49,5 @@ namespace SeleniumTests
         {
             return originalname.Contains('\r') ? originalname.Substring(0, originalname.IndexOf('\r')) : originalname;
         }
-        [TearDown]
-        public void Stop()
-        {
-            StopDriver();
-        }
     }
 }

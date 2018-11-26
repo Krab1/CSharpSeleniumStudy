@@ -124,7 +124,7 @@ namespace SeleniumTests
         {
             driver.Quit();
             driver.Dispose();
-            AllDrivers.ForEach(x => 
+            AllDrivers.ForEach(x =>
             {
                 x.Quit();
                 x.Dispose();

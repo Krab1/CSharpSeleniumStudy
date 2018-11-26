@@ -37,11 +37,5 @@ namespace SeleniumTests
         {
             return driver.WindowHandles.First(x => !x.Equals(oldwindow));
         }
-
-        [TearDown]
-        public void Stop()
-        {
-            StopDriver();
-        }
     }
 }

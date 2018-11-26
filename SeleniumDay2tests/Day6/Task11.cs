@@ -43,11 +43,5 @@ namespace SeleniumTests
             var register = driver.FindElements(By.XPath("//*[@id='box-account-login']//a"));
             Assert.IsTrue(register.Count > 0);
         }
-
-        [TearDown]
-        public void Stop()
-        {
-            StopDriver();
-        }
     }
 }

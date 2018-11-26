@@ -27,7 +27,5 @@ namespace SeleniumTests
                 throw new Exception();
             }
         }
-        [TearDown]
-        public void Stop() => StopDriver();
     }
 }

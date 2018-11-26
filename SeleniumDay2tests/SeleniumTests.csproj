@@ -59,6 +59,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLogics\Base.cs" />
+    <Compile Include="PageObjects\Application\Application.cs" />
+    <Compile Include="PageObjects\Pages\Base\Page.cs" />
+    <Compile Include="PageObjects\TestBase.cs" />
+    <Compile Include="PageObjects\Pages\BasketPage.cs" />
+    <Compile Include="PageObjects\Pages\ProductPage.cs" />
+    <Compile Include="PageObjects\Pages\MainPage.cs" />
+    <Compile Include="Day11\Task19.cs" />
     <Compile Include="Day3\Task4\Task4.cs" />
     <Compile Include="Day3\Task5\Task5.cs" />
     <Compile Include="Day3\Task6\Task6.cs" />
