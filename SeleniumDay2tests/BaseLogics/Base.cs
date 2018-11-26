@@ -6,13 +6,14 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumTests
 {
     class Base
     {
-        public IWebDriver driver;
+        public EventFiringWebDriver driver;
         public WebDriverWait wait;
         public List<IWebDriver> AllDrivers = new List<IWebDriver>() { };
         public void config()
@@ -21,6 +22,9 @@ namespace SeleniumTests
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(30);
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            driver.FindingElement += (sender, e) => Console.WriteLine(e.FindMethod);
+            driver.FindElementCompleted += (sender, e) => Console.WriteLine(e.FindMethod + " found");
+            driver.ExceptionThrown += (sender, e) => Console.WriteLine(e.ThrownException);
         }
         public void StartAll(bool firefoxUseLegacyImplementation = false)
         {
@@ -33,12 +37,12 @@ namespace SeleniumTests
         }
         public void StartChrome()
         {
-            driver = new ChromeDriver();
+            driver = new EventFiringWebDriver(new ChromeDriver());
             config();
         }
         public void StartIE()
         {
-            driver = new InternetExplorerDriver();
+            driver = new EventFiringWebDriver(new InternetExplorerDriver());
             config();
         }
         public void StartFireFox(bool UseLegacyImplementation = false)
@@ -47,12 +51,12 @@ namespace SeleniumTests
             {
                 UseLegacyImplementation = UseLegacyImplementation
             };
-            driver = new FirefoxDriver(options);
+            driver = new EventFiringWebDriver(new FirefoxDriver(options));
             config();
         }
         public void StartFireFox(FirefoxOptions FFOptions)
         {
-            driver = new FirefoxDriver(FFOptions);
+            driver = new EventFiringWebDriver(new FirefoxDriver(FFOptions));
             config();
         }
         public void OpenMainSite()
